@@ -1,0 +1,25 @@
+name: My Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      param1:
+        description: 'Parameter 1'
+        required: true
+        default: 'default_value1'
+      param2:
+        description: 'Parameter 2'
+        required: false
+        default: 'default_value2'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v2
+      
+      - name: Print Parameters
+        run: |
+          echo "Param1: ${{ github.event.inputs.param1 }}"
+          echo "Param2: ${{ github.event.inputs.param2 }}"
